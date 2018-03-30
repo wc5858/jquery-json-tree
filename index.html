@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <title>json tree example</title>
+    <meta charset="utf-8">
+        <link href="./style.css" rel="stylesheet">
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
+        <script src="./main.js"></script>
+  </head>
+    <body>
+    <button id="save">console结果</button>
+    <div>
+      <div id="example"></div>
+          <div id="show"></div>
+    </div>
+    </body>
+    <script>
+  var data = [{
+    foo: {
+      bar: 'foobar',
+      baz: 'foobaz',
+      qux: [
+        {
+          foobar: 'bar',
+          foobaz: 'baz',
+          qux: [
+            {
+              foobar: 'bar',
+              foobaz: 'baz'
+            }
+          ]
+        },
+        {
+          foobar: 'bar',
+          foobaz: 'baz',
+          qux: [
+            {
+              foobar: 'bar',
+              foobaz: 'baz'
+            },
+            {
+              foobar: 'bar',
+              foobaz: 'baz'
+            }
+          ]
+        }
+      ]
+    },
+    bar: [
+      {foo: 'barfoo'},
+      {qux: 'barqux'}
+    ],
+    qux: [
+      'foo',
+      'bar',
+      'foobar'
+    ],
+    qux2: [
+      [0, 1, 2, 3],
+      [0, 1, 2, 3],
+      [0, 1, 2, 3],
+    ],
+    baz: true,
+    baz2: false,
+    foobar: [0, 1, 2, 3],
+    barfoo: null
+  },
+  {
+    foo: {
+      bar: 'foobar',
+      baz: 'foobaz',
+      qux: [
+        {
+          foobar: 'bar',
+          foobaz: 'baz',
+          qux: [
+            {
+              foobar: 'bar',
+              foobaz: 'baz'
+            }
+          ]
+        },
+        {
+          foobar: 'bar',
+          foobaz: 'baz',
+          qux: [
+            {
+              foobar: 'bar',
+              foobaz: 'baz'
+            },
+            {
+              foobar: 'bar',
+              foobaz: 'baz'
+            }
+          ]
+        }
+      ]
+    },
+    bar: [
+      {foo: 'barfoo'},
+      {qux: 'barqux'}
+    ],
+    qux: [
+      'foo',
+      'bar',
+      'foobar'
+    ],
+    qux2: [
+      [0, 1, 2, 3],
+      [0, 1, 2, 3],
+      [0, 1, 2, 3],
+    ],
+    baz: true,
+    baz2: false,
+    foobar: [0, 1, 2, 3],
+    barfoo: null
+  }]
+
+  var options = {
+    collapsible: true,        //default : true
+    readOnly: false,          //default : false
+    arrAddable: true         //default : true 只读时这一参数无效
+  }
+
+  var changefunc = function (changeData) {
+    //输出或增删数据时触发
+    $('#show').JSONTree(changeData, { readOnly: true });
+  }
+
+  $('#example').JSONTree(data, options, changefunc);
+
+  $('#save').on('click', function () {
+    var result = $('#example').getTreeData();
+    console.log(result);
+  })
+    </script>
+</html>
